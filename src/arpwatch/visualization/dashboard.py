@@ -143,11 +143,11 @@ class WebDashboard:
             return
         
         try:
-            self.server = HTTPServer(('0.0.0.0', self.port), DashboardHandler)
+            self.server = HTTPServer(('127.0.0.1', self.port), DashboardHandler)
             self.server_thread = threading.Thread(target=self._run_server, daemon=True)
             self.server_thread.start()
             self._running = True
-            logger.info(f"Web dashboard started at http://0.0.0.0:{self.port}")
+            logger.info(f"Web dashboard started at http://127.0.0.1:{self.port}")
         except Exception as e:
             logger.error(f"Failed to start web dashboard: {e}")
     

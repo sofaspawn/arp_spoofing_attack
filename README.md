@@ -1,92 +1,43 @@
-# ARP Spoofing Detection System
+# ARP Spoofing Detection Lab
 
-A comprehensive, educational implementation of real-time ARP spoofing detection and mitigation for local area networks. Based on the BCSE308L Computer Networks project report.
+A reproducible educational prototype based on the BCSE308L project report. Its presentation workflow runs locally using an in-memory labeled ARP trace; it demonstrates the flow from normal mapping learning through suspicious claims, detection, dry-run response, and evaluation, then exposes the run in a browser dashboard.
 
-## 🎯 Features
+## Fast presentation
 
-- **Multi-Rule Detection Engine**: 7 detection rules (mapping change, duplicate mapping, reply rate, gratuitous ARP, MAC spoofing, gateway impersonation, two-way spoofing)
-- **Attack Generation**: Scapy-based ARP spoofing (one-way, MITM two-way, reply flood, gratuitous flood)
-- **Automated Mitigation**: Corrective ARP announcements + host firewall blocking (iptables/nftables)
-- **Evaluation Framework**: Ground truth correlation, accuracy/precision/recall/F1, response time measurement
-- **Web Dashboard**: Real-time visualization (bindings, alerts, stats, timeline charts)
-- **Network Topology**: Packet Tracer compatible topology generator
-- **Safety First**: Dry-run mode by default, no packets transmitted without explicit consent
+Install Python 3.10+, then from the project root:
 
-## 📦 Installation
-
-```bash
-cd arp_spoofing
+```sh
 python3 -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+. .venv/bin/activate
+python -m pip install -r requirements.txt
+PYTHONPATH=src python -m arpwatch demo --hold
 ```
 
-## 🚀 Quick Start
+Open `http://127.0.0.1:8080`. Press Ctrl-C in the terminal to stop. Detailed, beginner-friendly speaking notes and troubleshooting are in [`demo.md`](demo.md).
 
-```bash
-# Run offline simulation with dashboard
-PYTHONPATH=src python -m arpwatch simulate --scenario mixed --dashboard
+## Commands
 
-# Open http://localhost:8080 in browser
+```sh
+PYTHONPATH=src python -m arpwatch topology --output packet_tracer
+PYTHONPATH=src python -m arpwatch demo --hold --port 8081 --output logs/presentation.json
+PYTHONPATH=src python -m unittest discover -s tests -v
 ```
 
-## 📖 Commands
+On Windows PowerShell first run `$env:PYTHONPATH = "src"` in that terminal, then invoke `python -m arpwatch ...`.
 
-| Command | Description |
-|---------|-------------|
-| `simulate` | Offline simulation with test scenarios |
-| `live` | Live packet capture (requires root/Scapy) |
-| `attack` | Generate attack traffic for testing |
-| `evaluate` | Run evaluation on recorded data |
-| `dashboard` | Start web dashboard only |
-| `topology` | Generate network topology diagrams |
+## Architecture
 
-### Simulation Scenarios
-- `benign` - Normal ARP traffic
-- `gateway_impersonation` - Attacker impersonates gateway
-- `mitm_two_way` - Full MITM (victim + gateway poisoned)
-- `reply_flood` - High ARP reply rate
-- `gratuitous_flood` - Excessive gratuitous ARPs
-- `mac_spoofing` - One MAC claiming multiple IPs
-- `mixed` - Combination of benign and attacks
+- `src/arpwatch/detection/engine.py`: in-memory IP-to-MAC table and mapping-change, gateway impersonation, reply-rate, gratuitous ARP, and MAC/IP anomaly rules.
+- `src/arpwatch/__main__.py`: deterministic event timeline, command-line orchestration, dashboard updates, and results output.
+- `src/arpwatch/evaluation/engine.py`: alert-to-labeled-event matching and honest metric reporting.
+- `src/arpwatch/mitigation/engine.py`: mitigation action proposals; the demo runs it in dry-run mode.
+- `src/arpwatch/visualization/dashboard.py`: localhost-only status/dashboard endpoints.
+- `src/arpwatch/detection/capture.py`: optional Scapy passive capture building block; it is not used by the offline demo command.
+- `src/arpwatch/topology/builder.py`: topology documentation exported as JSON, Mermaid, and text. JSON is not a Cisco Packet Tracer `.pkt` file.
+- `configs/default.yaml`: demo/system thresholds.
 
-## 🏗️ Architecture
+## Safety and scientific limits
 
-```
-src/arpwatch/
-├── attack/          # Attack packet generation
-├── detection/       # Packet capture + detection engine
-├── mitigation/      # Corrective ARP + firewall
-├── evaluation/      # Metrics + ground truth correlation
-├── visualization/   # Web dashboard
-├── topology/        # Network topology builder
-├── models.py        # Shared data models
-├── config.py        # Configuration management
-└── __main__.py      # CLI entry point
-```
+The built-in demo never injects packets, modifies another host's ARP cache, or changes firewall state. Dry-run mitigation only records proposed action. Do not enable experimental packet injection or firewall changes on a shared network. Optional live passive capture requires Scapy, privileges, explicit authorization, and suitable visibility (often a switch mirror port).
 
-## 🧪 Testing
-
-```bash
-# Run all tests
-PYTHONPATH=src python -m pytest tests/ -v
-
-# Run specific test module
-PYTHONPATH=src python -m pytest tests/test_detection.py -v
-```
-
-## 📊 Demo
-
-See [DEMO.md](DEMO.md) for complete professor demo guide with exact commands and talking points.
-
-## ⚠️ Safety & Ethics
-
-- **Default dry-run mode**: No packets transmitted, no firewall changes
-- **Explicit enable required**: Must call `.enable()` on attack/mitigation engines
-- **Interface restriction**: Requires explicit interface configuration for live mode
-- **Rate limiting**: Built-in packet rate limits
-- **Educational use only**: Test only on networks you own or have explicit authorization
-
-## 📄 License
-
-Educational project for BCSE308L Computer Networks course.
+The demonstration uses a small synthetic trace and is not evidence of production detection accuracy. Precision/recall and latency are computed from labeled events. The tool does not invent true-negative counts: defensible accuracy and false-positive rates require a defined labeled set of benign and attack decision windows and repeated trials.
