@@ -1,0 +1,66 @@
+# ARP Spoofing Detection System Configuration
+# All settings are tuned for educational demonstration
+
+network:
+  interface: "eth0"                    # Network interface to monitor
+  subnet: "192.168.1.0/24"             # Local subnet
+  gateway_ip: "192.168.1.1"            # Default gateway IP
+  gateway_mac: "02:00:00:00:00:01"     # Known gateway MAC (set after discovery)
+
+detection:
+  # Mapping change detection
+  mapping_change_enabled: true
+  duplicate_window_seconds: 30         # Time window for duplicate MAC detection
+  
+  # Rate-based detection
+  rate_limit_enabled: true
+  max_replies_per_window: 8            # Max ARP replies per IP per window
+  rate_window_seconds: 10              # Time window for rate limiting
+  
+  # Gratuitous ARP detection
+  gratuitous_arp_enabled: true
+  gratuitous_threshold: 3              # Max gratuitous ARPs per IP per minute
+  
+  # MAC spoofing detection (same MAC claiming multiple IPs)
+  mac_spoofing_enabled: true
+  max_ips_per_mac: 3                   # Max IPs a single MAC should claim
+  
+  # Baseline learning
+  baseline_learning_enabled: true
+  baseline_duration_seconds: 60        # Learn legitimate mappings for this long
+  require_baseline_before_alert: true  # Don't alert until baseline established
+
+mitigation:
+  enabled: false                       # Safety: disabled by default
+  corrective_arp_enabled: true         # Send corrective ARP announcements
+  corrective_arp_count: 3              # Number of corrective ARPs to send
+  corrective_arp_interval: 1           # Seconds between corrective ARPs
+  firewall_block_enabled: false        # Block attacker MAC at host firewall (Linux only)
+  firewall_block_duration: 300         # Seconds to block (5 minutes)
+  auto_restore_on_timeout: true        # Auto-remove firewall rule after duration
+
+evaluation:
+  enabled: true
+  log_detailed_events: true
+  metrics_window_seconds: 60           # Window for computing metrics
+  ground_truth_file: "logs/ground_truth.jsonl"
+  results_file: "logs/evaluation_results.json"
+
+visualization:
+  enabled: true
+  web_port: 8080                       # Port for web dashboard
+  update_interval_seconds: 1           # Dashboard update frequency
+  max_history_points: 300              # Max data points to retain
+
+logging:
+  level: "INFO"
+  file: "logs/arpwatch.log"
+  max_size_mb: 10
+  backup_count: 5
+  json_format: true
+
+safety:
+  dry_run: true                        # If true, no packets sent, no firewall changes
+  require_explicit_interface: true     # Must explicitly specify interface
+  allowed_interfaces: []               # Empty = all interfaces allowed (when not dry_run)
+  max_packets_per_second: 100          # Rate limit for any packet transmission
