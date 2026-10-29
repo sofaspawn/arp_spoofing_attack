@@ -76,6 +76,7 @@ def run_demo(args):
                                        'packets_processed':detector.stats['packets_processed'],'packets_dropped':0,'errors':0,
                                        'packets_per_second':0})
             dash.update_mitigation_stats(mit.get_stats())
+            dash.update_recent_packets(detector.get_recent_packets(30))
     except KeyboardInterrupt: pass
     finally:
         m=eval_engine.get_overall_metrics()

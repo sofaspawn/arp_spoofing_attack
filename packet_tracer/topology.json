@@ -1,0 +1,241 @@
+{
+  "version": "1.0",
+  "name": "ARP Spoofing Detection Lab",
+  "description": "Topology for ARP Spoofing Detection demonstration",
+  "nodes": [
+    {
+      "name": "Gateway",
+      "type": "router",
+      "ip": "192.168.1.1",
+      "mac": "02:00:00:00:00:01",
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "interfaces": [
+        {
+          "name": "GigabitEthernet0/0",
+          "ip": "192.168.1.1",
+          "mac": "02:00:00:00:00:01",
+          "connected_to": "LabSwitch"
+        }
+      ]
+    },
+    {
+      "name": "LabSwitch",
+      "type": "switch",
+      "ip": "",
+      "mac": "",
+      "position": {
+        "x": 400,
+        "y": 100
+      },
+      "interfaces": [
+        {
+          "name": "FastEthernet0/1",
+          "connected_to": "Gateway"
+        },
+        {
+          "name": "FastEthernet0/2",
+          "connected_to": "Victim"
+        },
+        {
+          "name": "FastEthernet0/3",
+          "connected_to": "Host2"
+        },
+        {
+          "name": "FastEthernet0/4",
+          "connected_to": "Attacker"
+        },
+        {
+          "name": "FastEthernet0/5",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/6",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/7",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/8",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/9",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/10",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/11",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/12",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/13",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/14",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/15",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/16",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/17",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/18",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/19",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/20",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/21",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/22",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/23",
+          "connected_to": ""
+        },
+        {
+          "name": "FastEthernet0/24",
+          "connected_to": "Monitor"
+        }
+      ]
+    },
+    {
+      "name": "Victim",
+      "type": "host",
+      "ip": "192.168.1.10",
+      "mac": "02:00:00:00:00:10",
+      "position": {
+        "x": 400,
+        "y": 250
+      },
+      "interfaces": [
+        {
+          "name": "FastEthernet0",
+          "ip": "192.168.1.10",
+          "mac": "02:00:00:00:00:10",
+          "gateway": "192.168.1.1",
+          "connected_to": "LabSwitch"
+        }
+      ]
+    },
+    {
+      "name": "Host2",
+      "type": "host",
+      "ip": "192.168.1.20",
+      "mac": "02:00:00:00:00:20",
+      "position": {
+        "x": 400,
+        "y": 320
+      },
+      "interfaces": [
+        {
+          "name": "FastEthernet0",
+          "ip": "192.168.1.20",
+          "mac": "02:00:00:00:00:20",
+          "gateway": "192.168.1.1",
+          "connected_to": "LabSwitch"
+        }
+      ]
+    },
+    {
+      "name": "Attacker",
+      "type": "attacker",
+      "ip": "192.168.1.99",
+      "mac": "02:00:00:00:00:99",
+      "position": {
+        "x": 400,
+        "y": 400
+      },
+      "interfaces": [
+        {
+          "name": "FastEthernet0",
+          "ip": "192.168.1.99",
+          "mac": "02:00:00:00:00:99",
+          "gateway": "192.168.1.1",
+          "connected_to": "LabSwitch"
+        }
+      ]
+    },
+    {
+      "name": "Monitor",
+      "type": "monitor",
+      "ip": "192.168.1.100",
+      "mac": "02:00:00:00:00:64",
+      "position": {
+        "x": 700,
+        "y": 100
+      },
+      "interfaces": [
+        {
+          "name": "FastEthernet0",
+          "ip": "192.168.1.100",
+          "mac": "02:00:00:00:00:64",
+          "gateway": "192.168.1.1",
+          "connected_to": "LabSwitch"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "Gateway",
+      "target": "LabSwitch",
+      "source_interface": "GigabitEthernet0/0",
+      "target_interface": "FastEthernet0/1"
+    },
+    {
+      "source": "Victim",
+      "target": "LabSwitch",
+      "source_interface": "FastEthernet0",
+      "target_interface": "FastEthernet0/2"
+    },
+    {
+      "source": "Host2",
+      "target": "LabSwitch",
+      "source_interface": "FastEthernet0",
+      "target_interface": "FastEthernet0/3"
+    },
+    {
+      "source": "Attacker",
+      "target": "LabSwitch",
+      "source_interface": "FastEthernet0",
+      "target_interface": "FastEthernet0/4"
+    },
+    {
+      "source": "Monitor",
+      "target": "LabSwitch",
+      "source_interface": "FastEthernet0",
+      "target_interface": "FastEthernet0/24"
+    }
+  ]
+}

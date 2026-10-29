@@ -1,0 +1,431 @@
+{
+  "metrics": {
+    "attacks": 3,
+    "alerts": 18,
+    "tp": 2,
+    "fp": 4,
+    "fn": 1,
+    "precision": 0.3333333333333333,
+    "recall": 0.6666666666666666,
+    "false_negative_rate": 0.3333333333333333,
+    "mean_response_ms": 3.196597099304199,
+    "note": "Accuracy and false-positive rate require labeled benign/attack decision windows; not estimated here."
+  },
+  "correlations": [
+    {
+      "alert_id": "97d65ca7",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 3.123760223388672
+    },
+    {
+      "alert_id": "c80fef01",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 3.191709518432617
+    },
+    {
+      "alert_id": "68d7b5df",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 3.230571746826172
+    },
+    {
+      "alert_id": "587487f7",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 403.1257629394531
+    },
+    {
+      "alert_id": "f1428743",
+      "event_id": "E07",
+      "true_positive": true,
+      "response_time_ms": 3.2694339752197266
+    },
+    {
+      "alert_id": "cf9bf0eb",
+      "event_id": "E07",
+      "true_positive": true,
+      "response_time_ms": 3.418445587158203
+    },
+    {
+      "alert_id": "516b0556",
+      "event_id": null,
+      "true_positive": false,
+      "response_time_ms": null
+    },
+    {
+      "alert_id": "d7052178",
+      "event_id": null,
+      "true_positive": false,
+      "response_time_ms": null
+    },
+    {
+      "alert_id": "928bb5ee",
+      "event_id": null,
+      "true_positive": false,
+      "response_time_ms": null
+    },
+    {
+      "alert_id": "88b64e33",
+      "event_id": null,
+      "true_positive": false,
+      "response_time_ms": null
+    },
+    {
+      "alert_id": "fbf4b747",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4003.110408782959
+    },
+    {
+      "alert_id": "d882462a",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4003.1661987304688
+    },
+    {
+      "alert_id": "ae21362c",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4003.181219100952
+    },
+    {
+      "alert_id": "9d9674b2",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4003.2289028167725
+    },
+    {
+      "alert_id": "fb26aad0",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4153.182506561279
+    },
+    {
+      "alert_id": "dd83c4cd",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4303.184270858765
+    },
+    {
+      "alert_id": "e7ba2281",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4453.07183265686
+    },
+    {
+      "alert_id": "ae28501e",
+      "event_id": "E05",
+      "true_positive": true,
+      "response_time_ms": 4453.114032745361
+    }
+  ],
+  "ground_truth": [
+    {
+      "event_id": "E05",
+      "timestamp": 1793265718.8412843,
+      "attack_type": "gateway_impersonation",
+      "attacker_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.10",
+      "spoofed_ip": "192.168.1.1",
+      "spoofed_mac": "02:00:00:00:00:99",
+      "description": "Simulated gateway impersonation event",
+      "timestamp_iso": "2026-10-29T09:21:58.841284+00:00"
+    },
+    {
+      "event_id": "E06",
+      "timestamp": 1793265719.2412844,
+      "attack_type": "gateway_impersonation",
+      "attacker_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.20",
+      "spoofed_ip": "192.168.1.1",
+      "spoofed_mac": "02:00:00:00:00:99",
+      "description": "Simulated gateway impersonation event",
+      "timestamp_iso": "2026-10-29T09:21:59.241284+00:00"
+    },
+    {
+      "event_id": "E07",
+      "timestamp": 1793265719.8412843,
+      "attack_type": "two_way_spoofing",
+      "attacker_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "spoofed_ip": "192.168.1.10",
+      "spoofed_mac": "02:00:00:00:00:99",
+      "description": "Simulated two way spoofing event",
+      "timestamp_iso": "2026-10-29T09:21:59.841284+00:00"
+    }
+  ],
+  "alerts": [
+    {
+      "alert_id": "97d65ca7",
+      "timestamp": 1793265718.844408,
+      "alert_type": "mapping_change",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.10",
+      "previous_mac": "02:00:00:00:00:01",
+      "message": "IP-to-MAC mapping changed: 192.168.1.1 02:00:00:00:00:01 -> 02:00:00:00:00:99",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:21:58.844408+00:00"
+    },
+    {
+      "alert_id": "c80fef01",
+      "timestamp": 1793265718.844476,
+      "alert_type": "gateway_impersonation",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.10",
+      "previous_mac": "02:00:00:00:00:01",
+      "message": "Gateway 192.168.1.1 claimed by unexpected MAC 02:00:00:00:00:99",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:21:58.844476+00:00"
+    },
+    {
+      "alert_id": "68d7b5df",
+      "timestamp": 1793265718.8445148,
+      "alert_type": "two_way_spoofing",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.10",
+      "previous_mac": null,
+      "message": "MITM signature: MAC 02:00:00:00:00:99 claims gateway 192.168.1.1 + ['192.168.1.99']",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:21:58.844515+00:00"
+    },
+    {
+      "alert_id": "587487f7",
+      "timestamp": 1793265719.24441,
+      "alert_type": "two_way_spoofing",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.20",
+      "previous_mac": null,
+      "message": "MITM signature: MAC 02:00:00:00:00:99 claims gateway 192.168.1.1 + ['192.168.1.99']",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:21:59.244410+00:00"
+    },
+    {
+      "alert_id": "f1428743",
+      "timestamp": 1793265719.8445537,
+      "alert_type": "mapping_change",
+      "severity": "warning",
+      "sender_ip": "192.168.1.10",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": "02:00:00:00:00:10",
+      "message": "IP-to-MAC mapping changed: 192.168.1.10 02:00:00:00:00:10 -> 02:00:00:00:00:99",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:21:59.844554+00:00"
+    },
+    {
+      "alert_id": "cf9bf0eb",
+      "timestamp": 1793265719.8447027,
+      "alert_type": "two_way_spoofing",
+      "severity": "critical",
+      "sender_ip": "192.168.1.10",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": null,
+      "message": "MITM signature: MAC 02:00:00:00:00:99 claims gateway 192.168.1.1 + ['192.168.1.10', '192.168.1.99']",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:21:59.844703+00:00"
+    },
+    {
+      "alert_id": "516b0556",
+      "timestamp": 1793265720.8443887,
+      "alert_type": "mapping_change",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:01",
+      "target_ip": "192.168.1.10",
+      "previous_mac": "02:00:00:00:00:99",
+      "message": "IP-to-MAC mapping changed: 192.168.1.1 02:00:00:00:00:99 -> 02:00:00:00:00:01",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:00.844389+00:00"
+    },
+    {
+      "alert_id": "d7052178",
+      "timestamp": 1793265720.8444355,
+      "alert_type": "duplicate_mapping",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:01",
+      "target_ip": "192.168.1.10",
+      "previous_mac": "02:00:00:00:00:99",
+      "message": "Conflicting MACs claimed 192.168.1.1 within 30s",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:00.844435+00:00"
+    },
+    {
+      "alert_id": "928bb5ee",
+      "timestamp": 1793265720.8444502,
+      "alert_type": "gateway_impersonation",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:01",
+      "target_ip": "192.168.1.10",
+      "previous_mac": "02:00:00:00:00:99",
+      "message": "Gateway 192.168.1.1 claimed by unexpected MAC 02:00:00:00:00:01",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:00.844450+00:00"
+    },
+    {
+      "alert_id": "88b64e33",
+      "timestamp": 1793265721.3244853,
+      "alert_type": "reply_rate_exceeded",
+      "severity": "warning",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:01",
+      "target_ip": "192.168.1.10",
+      "previous_mac": null,
+      "message": "9 ARP replies for 192.168.1.1 within 10s",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:01.324485+00:00"
+    },
+    {
+      "alert_id": "fbf4b747",
+      "timestamp": 1793265722.8443947,
+      "alert_type": "mapping_change",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": "02:00:00:00:00:01",
+      "message": "IP-to-MAC mapping changed: 192.168.1.1 02:00:00:00:00:01 -> 02:00:00:00:00:99",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:02.844395+00:00"
+    },
+    {
+      "alert_id": "d882462a",
+      "timestamp": 1793265722.8444505,
+      "alert_type": "duplicate_mapping",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": "02:00:00:00:00:01",
+      "message": "Conflicting MACs claimed 192.168.1.1 within 30s",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:02.844450+00:00"
+    },
+    {
+      "alert_id": "ae21362c",
+      "timestamp": 1793265722.8444655,
+      "alert_type": "gateway_impersonation",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": "02:00:00:00:00:01",
+      "message": "Gateway 192.168.1.1 claimed by unexpected MAC 02:00:00:00:00:99",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:02.844465+00:00"
+    },
+    {
+      "alert_id": "9d9674b2",
+      "timestamp": 1793265722.8445132,
+      "alert_type": "two_way_spoofing",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": null,
+      "message": "MITM signature: MAC 02:00:00:00:00:99 claims gateway 192.168.1.1 + ['192.168.1.10', '192.168.1.99']",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:02.844513+00:00"
+    },
+    {
+      "alert_id": "fb26aad0",
+      "timestamp": 1793265722.9944668,
+      "alert_type": "two_way_spoofing",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": null,
+      "message": "MITM signature: MAC 02:00:00:00:00:99 claims gateway 192.168.1.1 + ['192.168.1.10', '192.168.1.99']",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:02.994467+00:00"
+    },
+    {
+      "alert_id": "dd83c4cd",
+      "timestamp": 1793265723.1444685,
+      "alert_type": "two_way_spoofing",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": null,
+      "message": "MITM signature: MAC 02:00:00:00:00:99 claims gateway 192.168.1.1 + ['192.168.1.10', '192.168.1.99']",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:03.144469+00:00"
+    },
+    {
+      "alert_id": "e7ba2281",
+      "timestamp": 1793265723.294356,
+      "alert_type": "gratuitous_arp_flood",
+      "severity": "warning",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": null,
+      "message": "Excessive gratuitous ARP announcements for 192.168.1.1",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:03.294356+00:00"
+    },
+    {
+      "alert_id": "ae28501e",
+      "timestamp": 1793265723.2943983,
+      "alert_type": "two_way_spoofing",
+      "severity": "critical",
+      "sender_ip": "192.168.1.1",
+      "sender_mac": "02:00:00:00:00:99",
+      "target_ip": "192.168.1.1",
+      "previous_mac": null,
+      "message": "MITM signature: MAC 02:00:00:00:00:99 claims gateway 192.168.1.1 + ['192.168.1.10', '192.168.1.99']",
+      "details": {},
+      "mitigated": false,
+      "mitigation_action": null,
+      "timestamp_iso": "2026-10-29T09:22:03.294398+00:00"
+    }
+  ]
+}
